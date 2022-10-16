@@ -1,0 +1,60 @@
+<div class = "container mt-5">
+    <div class="row">
+        <section class="col-3">
+            <h5 class="text-headers-color ml-3" >Sort</h5>
+            <select class="custom-select mb-3" style="border-radius: 3px; color: grey; padding: 5px;" (change)="onSortSelected($event.target.value)">
+                <option *ngFor="let sort of sortOptions"
+                value={{sort.value}}>{{sort.name}}</option>
+            </select>
+           <h5 class="text-headers-color ml-3">Studio</h5>
+           <ul class="list-group my-3" >
+            <li class="list-group-item style-table" 
+                 *ngFor="let studio of studios"
+                [class.active]="studio.id === this.studioIdSelected"
+                [value]="studio.id"
+                (click) = onStudioSelected(studio.id)
+            >
+            {{studio.name}}</li>
+          </ul>
+          <h5 class="text-headers-color ml-3">Genre</h5>
+          <ul class="list-group my-3"> 
+  
+            <li class="list-group-item style-table" 
+            *ngFor="let genre of genres"
+            [class.active]="genre === this.genreNameSelected"
+            [value]="genre"
+            (click) = onGenreSelected(genre)
+            >{{genre}}</li>
+          </ul>
+        </section>
+        <section class="col-9">
+            <div class="d-flex justify-content-between align-items-center pb-2">
+                <header class="text-color">
+                    <span>Showing <strong>{{animes.length}}</strong> out of <strong>{{numberOfAllItems}}</strong></span>
+                </header>
+                <div class="form-inline mt-2">
+                    <input class="form-control mr-2" #search style="width: 300px;" type="text" placeholder="search">
+                    <button (click)="onSearch()" class="btn btn-outline-secondary my-2 space-between-buttons text-white">Search</button>
+                    <button (click)="onReset()" class="btn btn-outline-secondary mr-3 text-white">Reset</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4" *ngFor="let item of animes">
+                <app-anime-item [anime]="item"></app-anime-item>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center pagination-style">
+            <pagination 
+                class="pagination-style"
+                [boundaryLinks]="true" 
+                [totalItems]="77"
+                previousText="&lsaquo;" 
+                nextText="&rsaquo;"
+                 firstText="&laquo;" 
+                 lastText="&raquo;">
+            </pagination>
+            </div>
+  
+        </section>
+    </div>
+</div>

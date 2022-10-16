@@ -1,0 +1,16 @@
+<div class="form-outline mb-4">
+    <input
+    [ngClass]="(controlDir && controlDir.control && controlDir.control.touched) ? !controlDir.control.valid ? 'is-invalid' : 'is-valid' : null" 
+    [type]="type"
+    (input)="onChange($event.target.value)" 
+    (blur)="onTouched()"
+    id="{{label}}"
+    #input
+    class="form-control form-control-lg" 
+      />
+    <label class="form-label" for="{{label}}" style="color: greenyellow;">{{label}}</label>
+    <div class="invalid-feedback" *ngIf="(controlDir && controlDir.control && !controlDir.control.valid && controlDir.control.touched)">
+        <p *ngIf="controlDir.control.errors?.required">{{label}} is required</p>
+        <p *ngIf="controlDir.control.errors?.pattern">{{label}} invalid</p>
+    </div>
+</div>

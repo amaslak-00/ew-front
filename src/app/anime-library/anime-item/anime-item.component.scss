@@ -1,0 +1,55 @@
+.text-title-color{
+    text-decoration: solid;
+    color: rgb(4, 236, 4);
+    text-align: center;
+    
+}
+
+.text-color-subtext {
+    color: greenyellow;
+    text-shadow: 2px 2px #0b4628;
+}
+
+.shadow-sm{
+    border: 2px solid rgb(255, 255, 255);
+}
+
+.space-between-info {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.center-button{
+    text-align: center;
+    justify-content: center;
+    position: relative;
+    font-weight: bold;
+}
+
+
+.image :hover {
+    opacity: 1;
+    &button {
+        transform: none;
+        opacity: 0.4;
+    }
+}
+
+.hover-overlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(101, 101, 101, 0.5);
+    opacity: 0;
+    transition: all 0.5s;
+    border-color: greenyellow;
+
+    &button{
+        z-index: 1000;
+        transition: all 0.5s;
+ 
+    }
+
+}

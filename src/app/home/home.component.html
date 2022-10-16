@@ -1,0 +1,51 @@
+<div style="background-color: black; height: 100%; ">
+    <carousel style="height: 100%; ">
+        <slide>
+            <div class="img-container">
+                <img src="assets/background-2.jpg" alt="first slide" style="display: block; width: 100%; opacity: 0.4;" class="d-block w-100">
+            </div>
+            <div class="overlay">
+                <p> Welcome to</p>
+                <p>ANIME <span style="color: greenyellow">ORG</span>
+                <ng-container *ngIf="(currentUser$ | async) as user">
+                    <p style="color: white">{{user.firstName}}</p>
+                </ng-container>
+                </p>
+                <ng-container *ngIf="(currentUser$ | async) === null">
+                    <a routerLink="/account/register" class="btn btn-outline-secondary mr-3 text-light">Create your account</a>
+                </ng-container>
+               
+             </div>
+        </slide>
+        <slide>
+            <div class="img-container">
+                <img src="assets/background-2.jpg" alt="first slide" style="display: block; width: 100%; opacity: 0.4;" class="d-block w-100">
+            </div>
+            <div class="overlay">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="mb-4 shadow-sm" style="border: 2px solid white;">
+                            hej
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="mb-4 shadow-sm" style="border: 2px solid white;" >
+                            hej
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="mb-4 shadow-sm"  style="border: 2px solid white;">
+                            hej
+                        </div>
+                    </div>
+                </div>
+ 
+             </div>
+        </slide>
+    </carousel>
+    <section>
+        <div class="d-flex justify-content-center pt-5 pb-5">
+            <h1>Keep<span style="color: greenyellow;"> all</span> your reviews in<span style="color: greenyellow;"> one place</span></h1>
+        </div>
+    </section>
+</div>
