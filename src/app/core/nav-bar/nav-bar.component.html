@@ -1,5 +1,5 @@
 <div class="d-flex flex-column flex-md-row align-items-center justify-content-between p-3 px-md-8 bg-black shadow-sm fixed-top">
-  <img src="/assets/logo2.png" style="max-height: 70px;" alt="logo">
+  <img src="/assets/logo3.png" style="max-height: 70px;" alt="logo">
   <nav class="my-2 my-md-0 mr-md-3 " style="font-size: larger;" >
     <a class="p-2 text-light change-color" routerLink="'/'" routerLinkActive="active" routerLinkActiveOptions="{exact: true}" >Home</a>
     <a class="p-2 text-light" routerLink="/about" routerLinkActive="active">About us</a>
@@ -16,7 +16,7 @@
         <a class="dropdown-toggle" style="cursor: pointer" dropdownToggle>
           <strong>Welcome {{user.firstName}}</strong></a>
         <div class="dropdown-menu dropdown-menu-right text-light" style="cursor: pointer; background-color: black;" *dropdownMenu> 
-          <a  routerLink="#" class="dropdown-item d-flex align-items-center py-2">
+          <a  routerLink="/anime-library/my-anime-list" class="dropdown-item d-flex align-items-center py-2">
             <i class="fa fa-shopping-history mr-3"></i> My Anime List
           </a>
           <div class="dropdown-divider"></div>

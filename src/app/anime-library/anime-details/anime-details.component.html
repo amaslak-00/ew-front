@@ -14,8 +14,15 @@
             <h4>Description</h4>
             <p>{{anime.description}}</p>
         </div>
-        <div>
-            <button class="btn btn-outline-secondary btn-lg">Add to Your Library</button>
-        </div>
+        <ng-container *ngIf="(currentUser$ | async) !== null">
+            <div *ngIf="viewComment" style="color: greenyellow;">
+                Your comment:
+                <div *ngIf="currentUserAnime">
+                    {{currentUserAnime | async}}
+                </div>
+            </div>
+            <button (click)="addAnimeToUser()" (click)="viewCommentFunction()" (click)=" getUserAnimeComment()" class="btn btn-outline-secondary btn-lg">Add to Your Library</button> 
+        </ng-container>
     </div>
+    
 </div>

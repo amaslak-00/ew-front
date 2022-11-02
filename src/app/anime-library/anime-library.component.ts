@@ -3,6 +3,10 @@ import { IStudio } from './../shared/models/studio';
 import { AnimeLibraryService } from './anime-library.service';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { IAnime } from '../shared/models/anime';
+import { AccountService } from 'src/app/account/account.service';
+import { Observable } from 'rxjs';
+import { IUserAnime } from '../shared/models/user-anime';
+import { useAnimation } from '@angular/animations';
 
 @Component({
   selector: 'app-anime-library',
@@ -19,6 +23,7 @@ export class AnimeLibraryComponent implements OnInit {
   genres: IAnime[];
   ongoings: IAnime[];
   allgenres: IAnime[];
+
   numberOfAllItems: number;
   studioIdSelected= 0;
   genreNameSelected = '';
@@ -28,14 +33,19 @@ export class AnimeLibraryComponent implements OnInit {
     {name: 'ongoing',value: 'ongoing' },
     {name: 'not ongoing', value: 'notongoing'}
   ]
+  currentUser$ : Observable<any>;
+  
 
-  constructor(private AnimeLibraryService: AnimeLibraryService) { }
+  constructor(private AnimeLibraryService: AnimeLibraryService, private accountService: AccountService) { }
 
   ngOnInit(): void {
+    this.currentUser$ = this.accountService.currentUser$;
     this.getAnimes();
     this.getStudios();
     this.getGenres();
     this.getNumberOfAllItems();
+   
+  
   }
 
   getNumberOfAllItems(){
@@ -48,6 +58,7 @@ export class AnimeLibraryComponent implements OnInit {
     });
   }
 
+  
   getAnimes(){
     this.AnimeLibraryService.getAnimeList().subscribe(response =>{
       this.animes = response;
@@ -81,6 +92,7 @@ export class AnimeLibraryComponent implements OnInit {
     });
   }
 
+ 
   onIsOnGoingSelected(status: boolean){
     if(status == true){
       this.animes = this.allanimes.filter(anime => anime.isOngoing === true);
@@ -129,6 +141,7 @@ export class AnimeLibraryComponent implements OnInit {
     
     
   }
+
 
 
 
