@@ -19,10 +19,6 @@ import { Router, UrlSerializer } from '@angular/router';
 export class AnimeLibraryService {
 
 
-  private currentUserAnimeSubject = new BehaviorSubject<any>(null);
-  private currentUserAnime: IUserAnime;
-
-
   baseUrl = 'http://localhost:8080/api/';
  
 
@@ -53,16 +49,19 @@ export class AnimeLibraryService {
   }
 
   getUserAnimeByIds(userId: number, animeId: number){
-    this.http.get<any>(this.baseUrl + 'useranime/' + userId + '/' +  animeId, {responseType: 'json'}).subscribe({
-      next: data => {
-        this.currentUserAnime = data,
-        this.currentUserAnimeSubject.next(data)
-      },
+   return this.http.get<IUserAnime>(this.baseUrl + 'useranime/' + userId + '/' +  animeId)
+    .pipe(map(responseData =>{
+      const currentAnimeUser : IUserAnime = responseData;
+      console.log(responseData)
+      return currentAnimeUser;
     })
-    return this.currentUserAnimeSubject.asObservable()
+    )
   }
 
- 
+  addComment(userId: number, animeId: number, comment: string){
+    return this.http.post<any>(this.baseUrl + 'useranime/' + userId + '/' +  animeId, comment).subscribe(responseData =>
+      console.log(responseData));
+  }
 
   addAnime(values: IUserAnimeDTO){
     console.log(values);

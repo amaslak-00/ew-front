@@ -8,7 +8,7 @@
     #input
     class="form-control form-control-lg" 
       />
-    <label class="form-label" for="{{label}}" style="color: greenyellow;">{{label}}</label>
+    <label class="form-label" for="{{label}}" style="color: rgb(128, 128, 255);">{{label}}</label>
     <div class="invalid-feedback" *ngIf="(controlDir && controlDir.control && !controlDir.control.valid && controlDir.control.touched)">
         <p *ngIf="controlDir.control.errors?.required">{{label}} is required</p>
         <p *ngIf="controlDir.control.errors?.pattern">{{label}} invalid</p>

@@ -23,10 +23,14 @@ export class AnimeDetailsComponent implements OnInit {
   currentAnime: IAnime;
   currentUser$: Observable<any>;
   currentUser: IUser;
-
-  currentUserAnime : IUserAnime[];
+  errors: string[];
+  currentUserAnime : IUserAnime;
+  currentUserAnime2 : IUserAnime;
   currentComment : String;
   userAnimeDTO : IUserAnimeDTO;
+  isFetched : boolean;
+  isCommented : boolean;
+  dataSubmited : boolean;
   userAnimeId: number = 0;
   constructor(private AnimeLibraryService: AnimeLibraryService, private fb: FormBuilder, private activateRoute: ActivatedRoute, private bcService: BreadcrumbService, private accountService: AccountService) { }
 
@@ -34,8 +38,9 @@ export class AnimeDetailsComponent implements OnInit {
     this.loadAnime();
     this.currentUser = this.accountService.getCurrentUserValue();
     this.currentUser$ = this.accountService.currentUser$;
-    
-
+    this.isFetched = false;
+    this.isCommented = false;
+    this.dataSubmited = false;
   }
 
   loadAnime(){
@@ -60,9 +65,29 @@ export class AnimeDetailsComponent implements OnInit {
     };
   }
   
-  getUserAnimeComment(){
-    console.log(this.AnimeLibraryService.getUserAnimeByIds(this.currentUser.id, this.currentAnime.id))
+  getUserAnime(){
+    this.AnimeLibraryService.getUserAnimeByIds(this.currentUser.id, this.currentAnime.id).subscribe(animeuser =>{
+      this.currentUserAnime = animeuser;
+      console.log(this.currentUserAnime)
+      this.isFetched = true;
+    }, error=>{
+      console.log(error);
+      this.errors = error.errors;
+    })
   }
+
+  getComment(){
+    this.AnimeLibraryService.getUserAnimeByIds(this.currentUser.id, this.currentAnime.id).subscribe(animeuser =>{
+      this.currentUserAnime2 = animeuser;
+      console.log(this.currentUserAnime)
+      this.isCommented = true;
+    }, error=>{
+      console.log(error);
+      this.errors = error.errors;
+    })
+  }
+
+
 
   addAnimeToUser(){
     this.AnimeLibraryService.addAnime(this.createUserAnime()).subscribe(() =>{
@@ -72,6 +97,12 @@ export class AnimeDetailsComponent implements OnInit {
     });
    
   }
+
+  onComment(postData: {comment: string}){
+    this.AnimeLibraryService.addComment(this.currentUser.id, this.currentAnime.id, postData.comment);
+    this.dataSubmited = true;
+  }
+
 
 
   

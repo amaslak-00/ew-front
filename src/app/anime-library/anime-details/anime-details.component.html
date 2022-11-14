@@ -15,13 +15,55 @@
             <p>{{anime.description}}</p>
         </div>
         <ng-container *ngIf="(currentUser$ | async) !== null">
-            <div *ngIf="viewComment" style="color: greenyellow;">
-                Your comment:
-                <div *ngIf="currentUserAnime">
-                    {{currentUserAnime | async}}
+            <div *ngIf="viewComment" style="color: rgb(128, 128, 255);">
+                <div *ngIf="!isCommented && dataSubmited===false">
+                <div *ngIf="!isFetched">
+                    <button  (click)="getUserAnime()" class="btn btn-outline-secondary btn-lg">Click here</button> 
+                </div>
+
+                <div *ngIf = "isFetched===true">
+                        <form #postForm="ngForm" (ngSubmit)="onComment(postForm.value)">
+                            <div class="form-group">
+                            <label for="comment">Add your comment</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="comment"
+                                    required
+                                    ngModel
+                                    name="comment"
+                                    style="width: 60%; height: 200%;"
+                                />
+                            </div>
+                            <button
+                            class="btn btn-primary"
+                            type="submit"
+                            [disabled]="!postForm.valid"
+                            >
+                            Send Comment
+                            </button>
+                        </form> 
+                </div>
+
+                </div>
+
+                <div *ngIf="isFetched===true && dataSubmited===true">
+
+                    <div *ngIf="!isCommented">
+                    <button class="btn btn-primary" (click)="getComment()">
+                        View Comment
+                    </button>
+                    </div>
+
+                    <div *ngIf="isCommented">
+                        {{currentUserAnime2.user.firstName}}'s comment : {{currentUserAnime2.comment}}
+                    </div>
+
                 </div>
             </div>
-            <button (click)="addAnimeToUser()" (click)="viewCommentFunction()" (click)=" getUserAnimeComment()" class="btn btn-outline-secondary btn-lg">Add to Your Library</button> 
+        <div *ngIf="!viewComment">
+            <button (click)="addAnimeToUser()" (click)="viewCommentFunction()" class="btn btn-outline-secondary btn-lg">Add to Your Library</button> 
+        </div>
         </ng-container>
     </div>
     

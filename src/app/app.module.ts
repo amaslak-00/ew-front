@@ -1,3 +1,4 @@
+import { AnimeLibraryService } from './anime-library/anime-library.service';
 import { HomeModule } from './home/home.module';
 import { AnimeLibraryModule } from './anime-library/anime-library.module';
 import { CoreModule } from './core/core.module';

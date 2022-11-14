@@ -7,7 +7,7 @@ import { AnimeItemComponent } from './anime-item/anime-item.component';
 import { AnimeDetailsComponent } from './anime-details/anime-details.component';
 import { MyAnimeListComponent } from './my-anime-list/my-anime-list.component';
 import { MyAnimeComponent } from './my-anime/my-anime.component';
-
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -23,7 +23,8 @@ import { MyAnimeComponent } from './my-anime/my-anime.component';
   imports: [
     CommonModule,
     ShareModule,
-    AnimeLibraryRoutingModule
+    AnimeLibraryRoutingModule,
+    FormsModule,
     
   ],
   exports: []

@@ -1,12 +1,12 @@
 .text-title-color{
     text-decoration: solid;
-    color: rgb(4, 236, 4);
+    color: rgb(228, 19, 173);
     text-align: center;
     
 }
 
 .text-color-subtext {
-    color: greenyellow;
+    color: rgb(128, 128, 255);
     text-shadow: 2px 2px #0b4628;
 }
 
@@ -44,7 +44,7 @@
     background: rgba(101, 101, 101, 0.5);
     opacity: 0;
     transition: all 0.5s;
-    border-color: greenyellow;
+    border-color: rgb(128, 128, 255);
 
     &button{
         z-index: 1000;
